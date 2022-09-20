@@ -51,15 +51,14 @@
       let button = document.getElementById("todo-submit");
       let input = document.getElementById("todo-input");
       let output = document.getElementById("todo-output");
-
+      let li = document.createElement('li')
+      li.id = "todo-output li"
       // TODO: Buatlah sebuah fungsi dengan nama fnClickHandler
       // Fungsi yang digunakan untuk menambahkan tulisan
       // Jangan ubah cara deklarasi fungsinya, cukup isi saja
       function fnClickHandler(toDoItem) {
         let getText = input.value;
 
-        const li = document.createElement('li')
-        li.id = "todo-output li"
         li.innerHTML = getText;
         output.appendChild(li)
         
@@ -74,7 +73,7 @@
       // TODO: register event onkeypress / addEventListener untuk input
       // sehingga saat di input ditekan enter akan menjalankan fungsi fnClickHandler juga
       input.addEventListener("keypress", (event)=>{
-        if(event.keyCode === 13) button.click()
+        if(event.key === "Enter") button.click()
       })
     </script>
   </body>

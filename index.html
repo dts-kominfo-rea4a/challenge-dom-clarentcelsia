@@ -6,8 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Challenge - DOM</title>
   </head>
+  <style>
+    * {
+      text-align: center;
+    }
+
+    #todo-title{
+      background-color: aqua;
+      font-size: 16pt;
+      font-weight: bold;
+    }
+
+    #todo-input{
+      padding: 5px;
+    }
+
+    #todo-output{
+      text-align: start;
+    }
+
+  </style>
   <body>
     <div id="app">
+      <h1 id="todo-title">To-Do List</h1>
+      <p id="todo-subtitle">~ Today I need to ~</p>
+      <input type="text" id="todo-input" autofocus>
+      <button id="todo-submit">Submit</button>
+
+      <ul id="todo-output"></ul>
       <!-- TODO: Buatlah sebuah header dengan id todo-title -->
       <!-- TODO: Buatlah sebuah subtitle dengan id todo-subtitle -->
 
@@ -22,20 +48,33 @@
     <!-- ! Untuk tantangan ini, script jangan diubah ke external js yah ! -->
     <script>
       // TODO: Deklarasi variable sesuai dengan kebutuhan di sini
-      let button;
-      let input;
-      let output;
+      let button = document.getElementById("todo-submit");
+      let input = document.getElementById("todo-input");
+      let output = document.getElementById("todo-output");
 
       // TODO: Buatlah sebuah fungsi dengan nama fnClickHandler
       // Fungsi yang digunakan untuk menambahkan tulisan
       // Jangan ubah cara deklarasi fungsinya, cukup isi saja
-      function fnClickHandler(toDoItem) {}
+      function fnClickHandler(toDoItem) {
+        let getText = input.value;
+
+        const li = document.createElement('li')
+        li.innerHTML = getText;
+        output.appendChild(li)
+        
+        input.value = "";
+        input.autofocus = true;
+      }
 
       // TODO: register event onclick / addEventListener untuk button
       // akan menjalankan fungsi fnClickHandler
+      button.addEventListener("click", fnClickHandler)
       
       // TODO: register event onkeypress / addEventListener untuk input
       // sehingga saat di input ditekan enter akan menjalankan fungsi fnClickHandler juga
+      input.addEventListener("keypress", (event)=>{
+        if(event.keyCode === 13) button.click()
+      })
     </script>
   </body>
 </html>
